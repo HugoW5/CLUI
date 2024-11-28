@@ -15,6 +15,7 @@ namespace CLUI
 		public int Y { get; set; }
 		public int Width { get; set; }
 		public int Height { get; set; }
+		public Action Click{ get; set; }
 		public int BorderThickness { get; set; } = 0;
 		public ConsoleColor BorderColor { get; set; } = ConsoleColor.DarkGray;
 		public ConsoleColor BackGroundColor { get; set; }
@@ -55,7 +56,7 @@ namespace CLUI
 			//write button label / text
 			Console.ForegroundColor = ForeGroundColor;
 			Console.SetCursorPosition((X + offsetX) + 1, (Y + offsetY) + 1);
-            Console.Write(Text);
+			Console.Write(Text);
 			Console.ResetColor();
 			if (BorderThickness > 0)
 			{
@@ -65,7 +66,7 @@ namespace CLUI
 				{
 					Console.SetCursorPosition(X + offsetX, (i + offsetY + Y));
 					Console.Write(' ');
-					Console.SetCursorPosition(X + (Width-1 + offsetX), (i + offsetY + Y));
+					Console.SetCursorPosition(X + (Width - 1 + offsetX), (i + offsetY + Y));
 					Console.Write(' ');
 				}
 				//Horizontal Borders
@@ -73,7 +74,7 @@ namespace CLUI
 				{
 					Console.SetCursorPosition(X + (i + offsetX), offsetY + Y);
 					Console.Write(' ');
-					Console.SetCursorPosition(X + (i + offsetX), Height-1 + (Y + offsetY));
+					Console.SetCursorPosition(X + (i + offsetX), Height - 1 + (Y + offsetY));
 					Console.Write(' '); // 2 because it work
 				}
 			}

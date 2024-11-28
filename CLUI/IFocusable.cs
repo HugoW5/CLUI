@@ -10,6 +10,6 @@ namespace CLUI
 	{
 		void OnFocus();   // component gets focus
 		void OnBlur();    // component loses focus
-		bool IsFocused { get; set; } // tracks the focus state
+		bool IsFocused { get; set; } // focus state
 	}
 }

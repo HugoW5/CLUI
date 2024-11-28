@@ -43,7 +43,7 @@ namespace CLUI
 			BorderColor = borderColor;
 		}
 
-		private List<IComponent> components = new List<IComponent>();
+		public List<IComponent> components = new List<IComponent>();
 		private int focusedIndex = 0;
 		public void AddComponent(IComponent component)
 		{
@@ -112,6 +112,9 @@ namespace CLUI
 						case ConsoleKey.Escape:
 							runFunction = false;
 							return;
+							case ConsoleKey.Enter:
+							((Button)components[focusedIndex]).Click();
+							break;
 					}
 				}
 

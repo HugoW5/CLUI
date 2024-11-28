@@ -1,83 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Security.Authentication;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace CLUI
 {
-	public class Button : IComponent, IFocusable
-	{
-		public string Text { get; set; } = "";
-		public bool IsFocused { get; set; } = false;
-		public int X { get; set; }
-		public int Y { get; set; }
-		public int Width { get; set; }
-		public int Height { get; set; }
-		public Action Click{ get; set; }
-		public int BorderThickness { get; set; } = 0;
-		public ConsoleColor BorderColor { get; set; } = ConsoleColor.DarkGray;
-		public ConsoleColor BackGroundColor { get; set; }
-		public ConsoleColor ForeGroundColor { get; set; }
+    public class Button : IComponent, IFocusable
+    {
+        public string Text { get; set; } = "";
+        public bool IsFocused { get; set; } = false;
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public Delegate Click { get; set; } = void () => { Console.Title = "Clicked"; };
+        public ConsoleColor BackGroundColor { get; set; } = ConsoleColor.Blue;
+        public ConsoleColor ForeGroundColor { get; set; } = ConsoleColor.White;
 
-		private int _offsetX = 0;
-		private int _offsetY = 0;
 
-		public void OnFocus()
-		{
-			IsFocused = true;
-			BorderThickness = 1;
-			Render(_offsetX, _offsetY);
-		}
+        private int _offsetX = 0;
+        private int _offsetY = 0;
 
-		public void OnBlur()
-		{
-			IsFocused = false;
-			BorderThickness = 0;
-			Render(_offsetX, _offsetY);
-		}
+        public void OnFocus()
+        {
+            IsFocused = true;
+            BackGroundColor = ConsoleColor.Green;
+            Render(_offsetX, _offsetY);
+        }
 
-		public void Render(int offsetX, int offsetY)
-		{
-			_offsetX = offsetX;
-			_offsetY = offsetY;
+        public void OnBlur()
+        {
+            BackGroundColor = ConsoleColor.Red;
+            IsFocused = false;
+            Render(_offsetX, _offsetY);
+        }
 
-			Console.BackgroundColor = BackGroundColor;
-			for (int i = 0; i < Width; i++)
-			{
-				for (int j = 0; j < Height; j++)
-				{
+        public void Render(int offsetX, int offsetY)
+        {
+            _offsetX = offsetX;
+            _offsetY = offsetY;
 
-					Console.SetCursorPosition(i + (X + offsetX), j + (Y + offsetY));
-					Console.WriteLine(' ');
-				}
-			}
-			//write button label / text
-			Console.ForegroundColor = ForeGroundColor;
-			Console.SetCursorPosition((X + offsetX) + 1, (Y + offsetY) + 1);
-			Console.Write(Text);
-			Console.ResetColor();
-			if (BorderThickness > 0)
-			{
-				Console.BackgroundColor = BorderColor;
-				//Vertical Borders
-				for (int i = 0; i < Height; i++)
-				{
-					Console.SetCursorPosition(X + offsetX, (i + offsetY + Y));
-					Console.Write(' ');
-					Console.SetCursorPosition(X + (Width - 1 + offsetX), (i + offsetY + Y));
-					Console.Write(' ');
-				}
-				//Horizontal Borders
-				for (int i = 0; i < Width; i++)
-				{
-					Console.SetCursorPosition(X + (i + offsetX), offsetY + Y);
-					Console.Write(' ');
-					Console.SetCursorPosition(X + (i + offsetX), Height - 1 + (Y + offsetY));
-					Console.Write(' '); // 2 because it work
-				}
-			}
-		}
-	}
+            Console.BackgroundColor = BackGroundColor;
+
+            
+
+            //write button label / text
+            Console.ForegroundColor = ForeGroundColor;
+            Console.SetCursorPosition((X + offsetX) + 1, (Y + offsetY) + 1);
+            Console.Write(Text);
+            Console.ResetColor();
+        }
+    }
 }

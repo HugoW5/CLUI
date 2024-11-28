@@ -93,7 +93,7 @@ namespace CLUI
 			foreach (IComponent component in components)
 			{
 				//Render component with window postion offset
-				component.Render(X, Y);
+				component.Render(X+4, Y+2);
 			}
 		}
 		public void HandleInput()
@@ -113,7 +113,7 @@ namespace CLUI
 							runFunction = false;
 							return;
 							case ConsoleKey.Enter:
-							((Button)components[focusedIndex]).Click();
+							((Button)components[focusedIndex]).Click.DynamicInvoke();
 							break;
 					}
 				}

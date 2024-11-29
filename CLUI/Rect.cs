@@ -14,7 +14,7 @@ namespace CLUI
 		public int Y { get; set; }
 		public int Width { get; set; }
 		public int Height { get; set; }
-		public int BorderThickness { get; set; } = 0;
+		public int BorderThickness { get; set; } = 0; // only set to 1
 		public ConsoleColor BorderColor { get; set; } = ConsoleColor.DarkGray;
 		public ConsoleColor BackGroundColor { get; set; } = ConsoleColor.White;
 

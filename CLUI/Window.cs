@@ -57,9 +57,9 @@ namespace CLUI
 		{
 			//Render Window
 			Console.BackgroundColor = BackgroundColor;
-			for (int i = 0; i < Width; i++)
+			for (int i = 0; i <= Width; i++)
 			{
-				for (int j = 0; j < Height; j++)
+				for (int j = 0; j <= Height; j++)
 				{
 					Console.SetCursorPosition(X + i, Y + j);
 					Console.Write(' ');
@@ -93,7 +93,7 @@ namespace CLUI
 			foreach (IComponent component in components)
 			{
 				//Render component with window postion offset
-				component.Render(X+4, Y+2);
+				component.Render(X, Y);
 			}
 		}
 		public void HandleInput()
@@ -112,13 +112,28 @@ namespace CLUI
 						case ConsoleKey.Escape:
 							runFunction = false;
 							return;
-							case ConsoleKey.Enter:
-							((Button)components[focusedIndex]).Click.DynamicInvoke();
+						case ConsoleKey.Enter:
+							HandleComponentClick(components[focusedIndex]);
 							break;
 					}
 				}
 
 			}
+		}
+		private void HandleComponentClick(IComponent component)
+		{
+			if (component is IClickable and IInputHandler clickableInputHandler)
+			{
+				clickableInputHandler.HandleInput();
+				return;
+			}
+			//find component functions
+			if (component is IClickable currenctClickable)
+			{
+				currenctClickable.Click.DynamicInvoke();
+				return;
+			}
+
 		}
 		private void MoveFocus()
 		{

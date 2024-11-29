@@ -14,6 +14,5 @@ namespace CLUI
 		public int Height { get; set; }
 		public ConsoleColor BackGroundColor { get; set; }
 		public void Render(int offsetX, int offsetY);
-
 	}
 }

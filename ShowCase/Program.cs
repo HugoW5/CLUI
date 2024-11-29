@@ -2,6 +2,8 @@
 using System.Data;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
+using System.Security.Principal;
+using System.Xml;
 
 namespace ShowCase
 {
@@ -10,51 +12,43 @@ namespace ShowCase
 		static void Main(string[] args)
 		{
 			//Console.CursorVisible = false;
-
-
-			Window window = new Window(10, 2, 30, 20, ConsoleColor.Blue);
-			Dropdown dropdown = new Dropdown();
-			dropdown.AddParentButton(new ParentButton
+			Window window = new(0, 0, Console.BufferWidth/2, Console.BufferHeight/2);
+			window.AddComponent(new Button
 			{
-				Y = 0,
-				Name = "Accounts",
-				ChildButtons =
-				{
-					new ChildButton
-					{
-						Name = "Privatkonto",
-					},
-					new ChildButton
-					{
-						Name = "Sparkonto"
-					}
-				}
+				X = 0,
+				Y = 12,
+				Text = "Yes",
 			});
-            dropdown.AddParentButton(new ParentButton
-            {
-				Y = 1,
-                Name = "Sign out",
-                ChildButtons =
-                {
-                    new ChildButton
-                    {
-                        Name = "Log out",
-                    },
-                    new ChildButton
-                    {
-                        Name = "Exit"
-                    }
-                }
-            });
+			window.AddComponent(new Button
+			{
+				X =  window.Width-1,
+				Y = 12,
+				Text = "No"
+			});
+			window.AddComponent(new Label
+			{
+				X = 0,
+				Y = 0,
+				Width = window.Width,
+				Text = "Welcome username!",
+				HorizontalAlignment = HorizontalAlignment.Center,
 
-			/*			foreach (var item in dropdown._parentButtons) 
-						{
-							window.AddComponent(item);
-						}*/
+			});
+			window.AddComponent(new Dropdown
+			{
+				X = 5,
+				Y = 2,
+				BackGroundColor = ConsoleColor.DarkBlue,
+				ForeGroundColor = ConsoleColor.Black,
+				FoucsColors = (ConsoleColor.Blue, ConsoleColor.White),
+				Options = {
+					"Accounts",
+					"Profile",
+					"Sign out"
+				}
 
-			window.AddComponent(dropdown);
-			
-            window.Render();
+			});
+			window.Render();
 			window.HandleInput();
 		}
 	}

@@ -122,7 +122,7 @@ namespace CLUI
 		}
 		private void HandleComponentClick(IComponent component)
 		{
-			if (component is IClickable and IInputHandler clickableInputHandler)
+			if (component is IInputHandler clickableInputHandler)
 			{
 				clickableInputHandler.HandleInput();
 				return;

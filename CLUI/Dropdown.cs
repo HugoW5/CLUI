@@ -9,34 +9,33 @@ using System.Threading.Tasks;
 
 namespace CLUI
 {
-	public class Dropdown : IComponent, IFocusable, IInputHandler, IClickable
+	public class Dropdown : IComponent, IFocusable, IInputHandler
 	{
 		public int X { get; set; }
 		public int Y { get; set; }
 		public int Width { get; set; } = 0;
 		public int Height { get; set; } = 1;
-		public ConsoleColor BackGroundColor { get; set; }
-		public ConsoleColor ForeGroundColor { get; set; }
+		public ConsoleColor BackGroundColor { get; set; } = ConsoleColor.DarkBlue;
+		public ConsoleColor ForeGroundColor { get; set; } = ConsoleColor.DarkGray;
 		///<summary>
 		/// (Background, Foreground)
 		/// Colors when focused
 		/// </summary>
 		public (ConsoleColor Background, ConsoleColor Foreground) FoucsColors { get; set; } = (ConsoleColor.Blue, ConsoleColor.White);
-
 		public List<string> Options { get; set; } = new List<string>();
 		public int SelectedIndex { get; set; } = -1; // -1 = no selection
-		public string SelectedValue => SelectedIndex >= 0 && SelectedIndex < Options.Count
-			? Options[SelectedIndex]
-			: null;
+		/// <summary>
+		/// Runs when the user has selected an item
+		/// Parameter index is the selected items postions in Options list
+		/// </summary>
+		public Delegate OnSelected { get; set; } = (int index) => { throw new NotImplementedException(); };
 		public bool IsOpen { get; private set; } = false;
 		public bool IsFocused { get; set; } = false;
-		public Delegate Click { get; set; }
 		public string Title { get; set; } = "Select...";
 
-
+		private string? SelectedValue = null;
 		private int _offsetX = 0;
 		private int _offsetY = 0;
-
 		public void Open()
 		{
 			if (!IsOpen)
@@ -47,7 +46,6 @@ namespace CLUI
 			// Re render with open or closed togglew
 			Render(_offsetX, _offsetY);
 		}
-
 		public void Close()
 		{
 			if (IsOpen)
@@ -74,8 +72,6 @@ namespace CLUI
 				{
 					Width = Options.OrderByDescending(s => s.Length).First().Length;
 				}
-
-				Console.Title = Width.ToString();
 			}
 
 			if (IsFocused)
@@ -92,7 +88,7 @@ namespace CLUI
 			// Render the collapsed state (selected value)
 			//Make the selected item wider if it needs to
 			string selected = $"{SelectedValue ?? Title}";
-			string formatedSelected = "["+ selected + new string(' ', Width - selected.Length) + "]";
+			string formatedSelected = "[" + selected + new string(' ', Width - selected.Length) + "]";
 			Console.SetCursorPosition(offsetX + X, offsetY + Y);
 			Console.Write(formatedSelected);
 
@@ -119,7 +115,6 @@ namespace CLUI
 			// Reset console colors
 			Console.ResetColor();
 		}
-
 		// Handle input, navigation + selection
 		public void HandleInput()
 		{
@@ -152,43 +147,47 @@ namespace CLUI
 							break;
 						case ConsoleKey.UpArrow:
 							if (SelectedIndex > 0)
+							{
 								SelectedIndex--;
+								Render(_offsetX, _offsetY);
+							}
 							break;
 						case ConsoleKey.DownArrow:
 							if (SelectedIndex < Options.Count - 1)
+							{
 								SelectedIndex++;
+								Render(_offsetX, _offsetY);
+							}
 							break;
 					}
 				}
 			}
 		}
-
 		private void OnOptionSelected(string opt)
 		{
-			Console.Title = opt;
+			SelectedValue = opt;
+			//call the delegate on selected with the index parameter
+			OnSelected.DynamicInvoke(SelectedIndex);
 		}
-
 		// Focus handling methods
 		public void OnFocus()
 		{
 			IsFocused = true;
 			Render(_offsetX, _offsetY);
 		}
-
 		public void OnBlur()
 		{
 			IsFocused = false;
 			//Close();
 			Render(_offsetX, _offsetY);
 		}
-
 		private void ClearOptions(int offsetX, int offsetY)
 		{
 			Console.BackgroundColor = ConsoleColor.White;
 			for (int i = 0; i < Options.Count; i++)
 			{
 				Console.SetCursorPosition(offsetX + X, offsetY + Y + i + 1);
-				Console.Write(new string(' ', Width)); // Overwrite the area with spaces
+				Console.Write(new string(' ', Width)); // Overwrite the area with white spaces
 			}
 			Console.ResetColor();
 		}

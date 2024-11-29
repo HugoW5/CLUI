@@ -20,7 +20,7 @@ namespace CLUI
 		public int Height { get; set; }
 		public Delegate Click { get; set; } = void () => { Console.Write("\a");};
 		public ConsoleColor BackGroundColor { get; set; } = ConsoleColor.DarkBlue;
-		public ConsoleColor ForeGroundColor { get; set; } = ConsoleColor.Black;
+		public ConsoleColor ForeGroundColor { get; set; } = ConsoleColor.DarkGray;
 		///<summary>
 		/// (Background, Foreground)
 		/// Colors when focused

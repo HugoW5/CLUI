@@ -1,4 +1,6 @@
 ﻿using CLUI;
+using CLUI.Components;
+using CLUI.Enums;
 using System;
 using System.Data;
 using System.Diagnostics.CodeAnalysis;
@@ -9,7 +11,7 @@ using System.Xml;
 
 namespace ShowCase
 {
-	internal class Program
+    internal class Program
 	{
 		static void Main(string[] args)
 		{

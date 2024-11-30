@@ -23,14 +23,14 @@ namespace CLUI
 		public Delegate OnClicked { get; set; } = (bool _checked) => { throw new NotImplementedException(); };
 		public override void Render(int offsetX, int offsetY)
 		{
-			Text = Checked ? UnCheckedText : CheckedText;
+			Text = Checked ? CheckedText : UnCheckedText;
 			base.Render(offsetX, offsetY);
 		}
 		private void Toggle()
 		{
 			Checked = !Checked;
 			Text = Checked ? CheckedText : UnCheckedText;
-			OnClicked.DynamicInvoke(!Checked);
+			OnClicked.DynamicInvoke(Checked);
 			Update();
 		}
 		public void SetValue(bool setValue)

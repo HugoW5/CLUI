@@ -1,6 +1,10 @@
-### Label & Dropdown  
+
+<details>
+<summary>
+<h3>Label & Dropdown</h3>
+</summary>
+	
 ```
-Window window = new Window(0, 0, Console.BufferWidth / 2, Console.BufferHeight / 2);
 window.AddComponent(new Label
 {
 	X = 15,
@@ -30,3 +34,34 @@ window.AddComponent(new Dropdown
 window.Render();
 window.HandleInput();
 ```
+</details>
+<details>
+<summary>
+<h3>Label & Checkbox</h3>
+</summary>
+	
+```
+window.AddComponent(new Label
+{
+	Width = 25,
+	HorizontalAlignment = HorizontalAlignment.Center,
+	X = 5,
+	Y = 0,
+	Text = "Label 1",
+});
+window.AddComponent(new Checkbox
+{
+	X = 0,
+	Y = 0,
+	Checked = true,
+	OnClicked = (bool _checked) =>
+	{
+		string text = (_checked ? "Check box is cheked" : "Check box is not cheked");
+		var label = ((Label)window.components[0]);
+		label.Text = text;
+		label.Update();
+	}
+});
+```
+</details>
+

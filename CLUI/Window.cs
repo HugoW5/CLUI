@@ -1,14 +1,16 @@
-﻿using Microsoft.VisualBasic;
+﻿using CLUI.Interfaces;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IComponent = CLUI.Interfaces.IComponent;
 
 namespace CLUI
 {
-	public class Window
+    public class Window
 	{
 		public int X { get; set; }
 		public int Y { get; set; }
@@ -43,7 +45,7 @@ namespace CLUI
 			BorderColor = borderColor;
 		}
 
-		public List<IComponent> components = new List<IComponent>();
+		public List<IComponent> components = new List<Interfaces.IComponent>();
 		private int focusedIndex = 0;
 		public void AddComponent(IComponent component)
 		{

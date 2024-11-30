@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CLUI
+namespace CLUI.Interfaces
 {
-	public interface IInputHandler
-	{
-		public void HandleInput();
-	}
+    public interface IInputHandler
+    {
+        public void HandleInput();
+    }
 }

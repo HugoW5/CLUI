@@ -16,9 +16,9 @@ namespace CLUI
 		public bool IsFocused { get; set; } = false;
 		public int X { get; set; }
 		public int Y { get; set; }
-		public int Width { get; set; }
-		public int Height { get; set; }
-		public Delegate Click { get; set; } = void () => { Console.Write("\a");};
+		public int Width { get; set; } = 1;
+		public int Height { get; set; } = 1;
+		public virtual Delegate Click { get; set; } = void () => { Console.Write("\a");}; // virtual for use in Checkbox
 		public ConsoleColor BackGroundColor { get; set; } = ConsoleColor.DarkBlue;
 		public ConsoleColor ForeGroundColor { get; set; } = ConsoleColor.DarkGray;
 		///<summary>
@@ -40,7 +40,7 @@ namespace CLUI
 			IsFocused = false;
 			Render(_offsetX, _offsetY);
 		}
-		public void Render(int offsetX, int offsetY)
+		public virtual void Render(int offsetX, int offsetY)
 		{
 			_offsetX = offsetX;
 			_offsetY = offsetY;
@@ -58,6 +58,13 @@ namespace CLUI
 			Console.SetCursorPosition(offsetX + X, offsetY + Y);
 			Console.Write(Text);
 			Console.ResetColor();
+		}
+		/// <summary>
+		/// RE-render
+		/// </summary>
+		public void Update()
+		{
+			this.Render(_offsetX, _offsetY);
 		}
 	}
 }

@@ -26,7 +26,7 @@ namespace CLUI
 			Text = Checked ? UnCheckedText : CheckedText;
 			base.Render(offsetX, offsetY);
 		}
-		public void Toggle()
+		private void Toggle()
 		{
 			Checked = !Checked;
 			Text = Checked ? CheckedText : UnCheckedText;

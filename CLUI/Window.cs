@@ -45,6 +45,7 @@ namespace CLUI
 
 		public List<IComponent> components = new List<IComponent>();
 		private int focusedIndex = 0;
+		private bool runFunction = true;
 		public void AddComponent(IComponent component)
 		{
 			components.Add(component);
@@ -96,9 +97,16 @@ namespace CLUI
 				component.Render(X, Y);
 			}
 		}
+		/// <summary>
+		/// Method for disposing windows
+		/// </summary>
+		public void Dispose()
+		{
+			runFunction = false;
+		}
 		public void HandleInput()
 		{
-			bool runFunction = true;
+			runFunction = true;
 			while (runFunction)
 			{
 				if (Console.KeyAvailable)

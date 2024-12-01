@@ -11,7 +11,7 @@ using CLUI.Interfaces;
 
 namespace CLUI.Components
 {
-    public class Button : IComponent, IFocusable, IClickable
+	public class Button : IComponent, IFocusable, IClickable
     {
         public string Text { get; set; } = "";
         public bool IsFocused { get; set; } = false;

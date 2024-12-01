@@ -14,10 +14,11 @@ namespace CLUI.Components
         public int X { get; set; }
         public int Y { get; set; }
         public int Width { get; set; }
-        public int Height { get; set; }
+        public int Height { get; set; } = 1;
         public int BorderThickness { get; set; } = 0; // only set to 1
         public ConsoleColor BorderColor { get; set; } = ConsoleColor.DarkGray;
-        public ConsoleColor BackGroundColor { get; set; } = ConsoleColor.White;
+        public ConsoleColor BackGroundColor { get; set; } = ConsoleColor.Gray;
+
 
         public void Render(int offsetX, int offsetY)
         {

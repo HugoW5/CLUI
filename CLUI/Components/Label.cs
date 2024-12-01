@@ -35,6 +35,10 @@ namespace CLUI.Components
             Console.BackgroundColor = BackGroundColor;
             if (HorizontalAlignment == HorizontalAlignment.Left)
             {
+                if (Width < Text.Length)
+                {
+                    Width = Text.Length;
+                }
                 Console.SetCursorPosition(X + offsetX, Y + offsetY);
                 string outputText = Text;
                 outputText += new string(' ', Width + 1 - Text.Length);

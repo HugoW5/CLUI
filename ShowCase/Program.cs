@@ -18,6 +18,7 @@ namespace ShowCase
 	{
 		static void Main(string[] args)
 		{
+			Console.CursorVisible = false;
 			Window window = new Window(0, 0, 30, 12);
 			window.AddComponent(new Label
 			{
@@ -26,6 +27,19 @@ namespace ShowCase
 				Text = "Window Title",
 				Width = window.Width,
 				HorizontalAlignment = HorizontalAlignment.Center,
+			});
+			window.AddComponent(new TextBox
+			{
+				X = 5,
+				Y = 5,
+				PlaceHolder = "Username",
+				Width = 14
+			});
+			window.AddComponent(new Button
+			{
+				X = 5, 
+				Y = 7,
+				Text = "Click"
 			});
 
 			window.Render();

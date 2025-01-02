@@ -90,7 +90,7 @@ namespace CLUI.Components
 			Render(_offsetX, _offsetY);
 		}
 
-		public void Render(int offsetX, int offsetY)
+		public virtual void Render(int offsetX, int offsetY)
 		{
 			_offsetX = offsetX;
 			_offsetY = offsetY;

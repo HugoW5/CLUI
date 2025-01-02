@@ -28,18 +28,22 @@ namespace ShowCase
 				Width = window.Width,
 				HorizontalAlignment = HorizontalAlignment.Center,
 			});
-			window.AddComponent(new TextBox
+			window.AddComponent(new PasswordBox
 			{
 				X = 5,
 				Y = 5,
-				PlaceHolder = "Username",
+				PlaceHolder = "Password",
 				Width = 14
 			});
 			window.AddComponent(new Button
 			{
 				X = 5, 
 				Y = 7,
-				Text = "Click"
+				Text = "Click",
+				Click = () =>
+				{
+					Console.Title = ((PasswordBox)window.components[1]).Text;
+				}
 			});
 
 			window.Render();

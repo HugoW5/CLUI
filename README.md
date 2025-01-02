@@ -1,9 +1,7 @@
 
-<details>
-<summary>
+
 <h3>Label & Dropdown</h3>
-</summary>
-	
+
 ```
 window.AddComponent(new Label
 {
@@ -34,11 +32,8 @@ window.AddComponent(new Dropdown
 window.Render();
 window.HandleInput();
 ```
-</details>
-<details>
-<summary>
+
 <h3>Label & Checkbox</h3>
-</summary>
 	
 ```
 window.AddComponent(new Label

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Net;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using CLUI.Interfaces;
+﻿using CLUI.Interfaces;
 using IComponent = CLUI.Interfaces.IComponent;
 
 namespace CLUI.Components

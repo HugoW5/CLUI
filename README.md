@@ -1,6 +1,13 @@
+## Components
+1. Button
+2. Label
+3. Rect
+4. TextBox
+5. PasswordBox
+6. Checkbox
+7. Dropdown
 
-
-<h3>Label & Dropdown</h3>
+## Label & Dropdown
 
 ```
 window.AddComponent(new Label
@@ -33,7 +40,7 @@ window.Render();
 window.HandleInput();
 ```
 
-<h3>Label & Checkbox</h3>
+## Label & Checkbox
 	
 ```
 window.AddComponent(new Label
@@ -58,5 +65,3 @@ window.AddComponent(new Checkbox
 	}
 });
 ```
-</details>
-

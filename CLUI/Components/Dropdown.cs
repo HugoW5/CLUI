@@ -9,7 +9,8 @@ namespace CLUI.Components
         public int Y { get; set; }
         public int Width { get; set; } = 0;
         public int Height { get; set; } = 1;
-        public ConsoleColor BackGroundColor { get; set; } = ConsoleColor.DarkBlue;
+		public string Id { get; set; }
+		public ConsoleColor BackGroundColor { get; set; } = ConsoleColor.DarkBlue;
         public ConsoleColor ForeGroundColor { get; set; } = ConsoleColor.DarkGray;
         ///<summary>
         /// (Background, Foreground)

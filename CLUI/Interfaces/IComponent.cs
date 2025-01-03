@@ -12,7 +12,8 @@ namespace CLUI.Interfaces
         public int Y { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
-        public ConsoleColor BackGroundColor { get; set; }
+        public string Id { get; set; }
+		public ConsoleColor BackGroundColor { get; set; }
         public void Render(int offsetX, int offsetY);
     }
 }

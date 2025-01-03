@@ -163,6 +163,10 @@ namespace CLUI
 				newFocusable.OnFocus();
 			}
 		}
+		public IComponent GetComponentById(string id)
+		{
+			return components.FirstOrDefault(c => c.Id == id);
+		}
 
 	}
 }

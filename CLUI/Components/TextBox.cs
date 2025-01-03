@@ -11,6 +11,7 @@ namespace CLUI.Components
 		public int Height { get; set; } = 1;
 		public string PlaceHolder { get; set; } = "";
 		public string Text { get; set; } = "";
+		public string Id { get; set; }
 		public ConsoleColor BackGroundColor { get; set; } = ConsoleColor.DarkGray;
 		public ConsoleColor ForeGroundColor { get; set; } = ConsoleColor.Gray;
 		///<summary>

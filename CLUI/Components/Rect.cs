@@ -8,7 +8,8 @@ namespace CLUI.Components
         public int Y { get; set; }
         public int Width { get; set; }
         public int Height { get; set; } = 1;
-        public int BorderThickness { get; set; } = 0; // only set to 1
+		public string Id { get; set; }
+		public int BorderThickness { get; set; } = 0; // only set to 1
         public ConsoleColor BorderColor { get; set; } = ConsoleColor.DarkGray;
         public ConsoleColor BackGroundColor { get; set; } = ConsoleColor.Gray;
 

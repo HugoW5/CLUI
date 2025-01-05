@@ -40,6 +40,8 @@ namespace ShowCase
 				}
 			});
 
+			((Button)window.GetComponentById("btn")).Text = "Click Me";
+
 			window.Render();
 			window.HandleInput();
 		}

@@ -7,9 +7,25 @@
 6. Checkbox
 7. Dropdown
 
+## Label
+```
+Window window = new Window(0, 0, 30, 12);
+window.AddComponent(new Label
+{
+	X = 15,
+	Y = 3,
+	Width = 20,
+	HorizontalAlignment = HorizontalAlignment.Center,
+	Text = "Label1",
+});
+window.Render();
+window.HandleInput();
+```
+
 ## Label & Dropdown
 
 ```
+Window window = new Window(0, 0, 30, 12);
 window.AddComponent(new Label
 {
 	X = 15,
@@ -43,6 +59,7 @@ window.HandleInput();
 ## Label & Checkbox
 	
 ```
+Window window = new Window(0, 0, 30, 12);
 window.AddComponent(new Label
 {
 	Width = 25,

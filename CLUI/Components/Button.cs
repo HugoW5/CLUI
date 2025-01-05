@@ -4,23 +4,22 @@ using CLUI.Interfaces;
 namespace CLUI.Components
 {
 	public class Button : IComponent, IFocusable, IClickable
-	{
-		public string Text { get; set; } = "";
-		public bool IsFocused { get; set; } = false;
-		public int X { get; set; }
-		public int Y { get; set; }
-		public int Width { get; set; } = 1;
-		public int Height { get; set; } = 1;
+    {
+        public string Text { get; set; } = "";
+        public bool IsFocused { get; set; } = false;
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Width { get; set; } = 1;
+        public int Height { get; set; } = 1;
 		public string Id { get; set; }
-		public HorizontalAlignment HorizontalAlignment { get; set; } = 0;
 		public virtual Delegate Click { get; set; } = void () => { Console.Write("\a"); }; // virtual for use in Checkbox
-		public ConsoleColor BackGroundColor { get; set; } = ConsoleColor.DarkBlue;
-		public ConsoleColor ForeGroundColor { get; set; } = ConsoleColor.DarkGray;
-		///<summary>
-		/// (Background, Foreground)
-		/// Colors when focused
-		/// </summary>
-		public (ConsoleColor Background, ConsoleColor Foreground) FoucsColors { get; set; } = (ConsoleColor.Blue, ConsoleColor.White);
+        public ConsoleColor BackGroundColor { get; set; } = ConsoleColor.DarkBlue;
+        public ConsoleColor ForeGroundColor { get; set; } = ConsoleColor.DarkGray;
+        ///<summary>
+        /// (Background, Foreground)
+        /// Colors when focused
+        /// </summary>
+        public (ConsoleColor Background, ConsoleColor Foreground) FoucsColors { get; set; } = (ConsoleColor.Blue, ConsoleColor.White);
 
 		private int _offsetX = 0;
 		private int _offsetY = 0;

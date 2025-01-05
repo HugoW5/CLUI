@@ -31,6 +31,8 @@ namespace ShowCase
 				X = 5, 
 				Y = 7,
 				Text = "Click",
+				Width = 20,
+				HorizontalAlignment = HorizontalAlignment.Center,
 				Id = "btn",
 				Click = () =>
 				{

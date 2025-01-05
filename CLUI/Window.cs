@@ -147,7 +147,7 @@ namespace CLUI
 		}
 		private void MoveFocus()
 		{
-			// Find the next focusable component
+			//Find the next focusable component
 			if (focusedIndex != -1 && components[focusedIndex] is IFocusable currentFocusable)
 			{
 				currentFocusable.OnBlur();

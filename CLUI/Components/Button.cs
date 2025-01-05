@@ -10,7 +10,8 @@ namespace CLUI.Components
         public int Y { get; set; }
         public int Width { get; set; } = 1;
         public int Height { get; set; } = 1;
-        public virtual Delegate Click { get; set; } = void () => { Console.Write("\a"); }; // virtual for use in Checkbox
+		public string Id { get; set; }
+		public virtual Delegate Click { get; set; } = void () => { Console.Write("\a"); }; // virtual for use in Checkbox
         public ConsoleColor BackGroundColor { get; set; } = ConsoleColor.DarkBlue;
         public ConsoleColor ForeGroundColor { get; set; } = ConsoleColor.DarkGray;
         ///<summary>

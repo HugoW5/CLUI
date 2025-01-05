@@ -31,11 +31,14 @@ namespace ShowCase
 				X = 5, 
 				Y = 7,
 				Text = "Click",
+				Id = "btn",
 				Click = () =>
 				{
 					Console.Title = ((PasswordBox)window.components[1]).Text;
 				}
 			});
+
+			((Button)window.GetComponentById("btn")).Text = "Click Me";
 
 			window.Render();
 			window.HandleInput();

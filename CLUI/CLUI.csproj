@@ -6,16 +6,23 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>CLUI</Title>
-    <Description>Command Line User Interface
+    <Description>Command Line User Interface.
 A simple frontend library for console applications</Description>
     <PackageProjectUrl>https://github.com/HugoW5/CLUI</PackageProjectUrl>
     <PackageReadmeFile>desc.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/HugoW5/CLUI</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>UI;CLI;CLUI;TUI;GUI;</PackageTags>
-    <Version>1.1.0</Version>
+    <Version>1.1.2</Version>
     <PackageReleaseNotes>Introduced GetComponentById method in Window.cs to retrieve components by Id.
 Added an Id propery to every component.</PackageReleaseNotes>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\Desktop\desc.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

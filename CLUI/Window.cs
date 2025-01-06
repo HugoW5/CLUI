@@ -94,8 +94,10 @@ namespace CLUI
 
 			//Render componets
 
-			//Add the childern of the Layout component
-			List<IComponent> tmpComponents = new List<IComponent>();
+			// Add the children of the Layout component
+			List<IComponent> tmpComponents = new List<IComponent>(components);
+			List<IComponent> newComponents = new List<IComponent>();
+
 			foreach (var component in components)
 			{
 				if (component is ILayout tmpLayout)
@@ -107,7 +109,18 @@ namespace CLUI
 					}
 				}
 			}
-			components = tmpComponents;
+
+			for (int i = 0; i < tmpComponents.Count; i++)
+			{
+				if (!components.Contains(tmpComponents[i]) && !newComponents.Contains(tmpComponents[i]))
+				{
+					newComponents.Add(tmpComponents[i]);
+				}
+			}
+
+			// Add new components to the original list after iteration
+			components.AddRange(newComponents);
+
 
 			foreach (IComponent component in components)
 			{

@@ -13,28 +13,28 @@ namespace ShowCase
 		{
 			Console.CursorVisible = false;
 			Window window = new Window(0, 0, 40, 20);
-			window.AddComponent(new StackPanel
+
+
+			window.AddComponent(new GridPanel(5, 2)
 			{
 				X = 10,
-				Y = 0,
-				Width = 30,
+				Y = 2,
+				Width = 20,
 				Height = 10,
 				BackGroundColor = ConsoleColor.Gray,
-				Spacing = 1,
-				StackingAlignment = StackingAlignment.Horizontal,
-				Id = "stackpanel",
-				Children =
-				{
-					new Button{Text="hej"},
-					new Button{Text="hej"},
-				}
+				Id = "grid"
 			});
+			((GridPanel)window.GetComponentById("grid")).AddChild(new Label { Text = "1", }, 0, 0);
+			((GridPanel)window.GetComponentById("grid")).AddChild(new Button { Text = "Delete", Width = 10, HorizontalAlignment = HorizontalAlignment.Center }, 0, 1);
 
-			((StackPanel)window.GetComponentById("stackpanel")).AddChild([
-				new Button { Text = "hej" },
-				new Button { Text = "hej" },
-				new Button { Text = "hej" },
-			]);
+			((GridPanel)window.GetComponentById("grid")).AddChild(new Label { Text = "2", }, 1, 0);
+			((GridPanel)window.GetComponentById("grid")).AddChild(new Button { Text = "Delete", Width = 10, HorizontalAlignment = HorizontalAlignment.Center }, 1, 1);
+
+			((GridPanel)window.GetComponentById("grid")).AddChild(new Label { Text = "3" }, 2, 0);
+			((GridPanel)window.GetComponentById("grid")).AddChild(new Button { Text = "Delete", Width = 10, HorizontalAlignment = HorizontalAlignment.Center }, 2, 1);
+
+			((GridPanel)window.GetComponentById("grid")).AddChild(new Label { Text = "4" }, 3, 0);
+			((GridPanel)window.GetComponentById("grid")).AddChild(new Button { Text = "Delete", Width = 10, HorizontalAlignment = HorizontalAlignment.Center }, 3, 1);
 
 			window.Render();
 			window.HandleInput();

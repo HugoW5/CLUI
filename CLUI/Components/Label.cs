@@ -37,12 +37,12 @@ namespace CLUI.Components
 				}
 				Console.SetCursorPosition(X + offsetX, Y + offsetY);
 				string outputText = Text;
-				outputText += new string(' ', Width + 1 - Text.Length);
+				outputText += new string(' ', Width - Text.Length);
 				Console.Write(outputText);
 			}
 			if (HorizontalAlignment == HorizontalAlignment.Center)
 			{
-				int totalWhitespace = Width + 1 - Text.Length;
+				int totalWhitespace = Width - Text.Length;
 				if (totalWhitespace < 0) totalWhitespace = 0; // no negative offset
 				int leftPadding = totalWhitespace / 2;
 				int rightPadding = totalWhitespace - leftPadding;

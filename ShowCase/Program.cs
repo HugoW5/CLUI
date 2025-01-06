@@ -1,6 +1,8 @@
 ﻿using CLUI;
 using CLUI.Components;
 using CLUI.Enums;
+using CLUI.Layouts;
+using System.Security.Principal;
 
 
 namespace ShowCase
@@ -10,37 +12,29 @@ namespace ShowCase
 		static void Main(string[] args)
 		{
 			Console.CursorVisible = false;
-			Window window = new Window(0, 0, 30, 12);
-			window.AddComponent(new Label
+			Window window = new Window(0, 0, 40, 20);
+			window.AddComponent(new StackPanel
 			{
-				X = 0,
+				X = 10,
 				Y = 0,
-				Text = "Window Title",
-				Width = window.Width,
-				HorizontalAlignment = HorizontalAlignment.Center,
-			});
-			window.AddComponent(new PasswordBox
-			{
-				X = 5,
-				Y = 5,
-				PlaceHolder = "Password",
-				Width = 14
-			});
-			window.AddComponent(new Button
-			{
-				X = 5, 
-				Y = 7,
-				Text = "Click",
-				Width = 20,
-				HorizontalAlignment = HorizontalAlignment.Center,
-				Id = "btn",
-				Click = () =>
+				Width = 30,
+				Height = 10,
+				BackGroundColor = ConsoleColor.Gray,
+				Spacing = 1,
+				StackingAlignment = StackingAlignment.Horizontal,
+				Id = "stackpanel",
+				Children =
 				{
-					Console.Title = ((PasswordBox)window.components[1]).Text;
+					new Button{Text="hej"},
+					new Button{Text="hej"},
 				}
 			});
 
-			((Button)window.GetComponentById("btn")).Text = "Click Me";
+			((StackPanel)window.GetComponentById("stackpanel")).AddChild([
+				new Button { Text = "hej" },
+				new Button { Text = "hej" },
+				new Button { Text = "hej" },
+			]);
 
 			window.Render();
 			window.HandleInput();

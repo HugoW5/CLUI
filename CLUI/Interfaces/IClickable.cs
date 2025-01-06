@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CLUI.Interfaces
 {
-    public interface IClickable
+    public interface IClickable : ITextDisplay
     {
         public Delegate Click { get; set; }
     }

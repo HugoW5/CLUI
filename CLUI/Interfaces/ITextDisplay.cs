@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CLUI.Interfaces
 {
-    public interface IInputHandler : ITextDisplay
+	public interface ITextDisplay
 	{
-        public void HandleInput();
-    }
+		string Text { get; set; }
+	}
 }

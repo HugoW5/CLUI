@@ -93,6 +93,22 @@ namespace CLUI
 
 
 			//Render componets
+
+			//Add the childern of the Layout component
+			List<IComponent> tmpComponents = new List<IComponent>();
+			foreach (var component in components)
+			{
+				if (component is ILayout tmpLayout)
+				{
+					tmpComponents.Add(tmpLayout);
+					foreach (var child in tmpLayout.Children)
+					{
+						tmpComponents.Add(child);
+					}
+				}
+			}
+			components = tmpComponents;
+
 			foreach (IComponent component in components)
 			{
 				//Render component with window postion offset

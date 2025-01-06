@@ -18,4 +18,9 @@ namespace CLUI.Enums
 		Middle,
 		Bottom
 	}
+	public enum StackingAlignment
+	{
+		Vertical,
+		Horizontal
+	}
 }

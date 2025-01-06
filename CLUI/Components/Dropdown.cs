@@ -26,7 +26,7 @@ namespace CLUI.Components
 		public Delegate OnSelected { get; set; } = (int index) => { throw new NotImplementedException(); };
 		public bool IsOpen { get; private set; } = false;
 		public bool IsFocused { get; set; } = false;
-		public string Title { get; set; } = "Select...";
+		public string Text { get; set; } = "Select...";
 
 		private string? SelectedValue = null;
 		private int _offsetX = 0;
@@ -62,7 +62,7 @@ namespace CLUI.Components
 			if (Width == 0)
 			{
 				//take the largets and make it the width
-				Width = Title.Length;
+				Width = Text.Length;
 				if (Options.OrderByDescending(s => s.Length).First().Length > Width)
 				{
 					Width = Options.OrderByDescending(s => s.Length).First().Length;
@@ -82,7 +82,7 @@ namespace CLUI.Components
 
 			//Render the collapsed state (selected value)
 			//Make the selected item wider if it needs to
-			string selected = $"{SelectedValue ?? Title}";
+			string selected = $"{SelectedValue ?? Text}";
 			string formatedSelected = "[" + selected + new string(' ', Width - selected.Length) + "]";
 			Console.SetCursorPosition(offsetX + X, offsetY + Y);
 			Console.Write(formatedSelected);

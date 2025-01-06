@@ -13,7 +13,7 @@ namespace CLUI.Components
 		public ConsoleColor BackGroundColor { get; set; } = ConsoleColor.Gray;
 		public ConsoleColor ForeGroundColor { get; set; } = ConsoleColor.Black;
 		public HorizontalAlignment HorizontalAlignment { get; set; } = 0;
-		public string Id { get; set; }
+		public string Id { get; set; } = string.Empty;
 
 		private int _offsetX = 0;
 		private int _offsetY = 0;

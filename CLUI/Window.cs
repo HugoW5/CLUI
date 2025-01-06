@@ -10,7 +10,7 @@ using IComponent = CLUI.Interfaces.IComponent;
 
 namespace CLUI
 {
-    public class Window
+	public class Window
 	{
 		public int X { get; set; }
 		public int Y { get; set; }
@@ -165,7 +165,15 @@ namespace CLUI
 		}
 		public IComponent GetComponentById(string id)
 		{
-			return components.FirstOrDefault(c => c.Id == id);
+			IComponent? tmpComponent = components.FirstOrDefault(c => c.Id == id);
+			if (tmpComponent != null)
+			{
+				return tmpComponent;
+			}
+			else
+			{
+				throw new InvalidOperationException($"Component with ID '{id}' was not found.");
+			}
 		}
 
 	}

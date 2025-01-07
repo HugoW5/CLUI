@@ -1,6 +1,8 @@
 ﻿using CLUI;
 using CLUI.Components;
 using CLUI.Enums;
+using CLUI.Layouts;
+using System.Security.Principal;
 
 
 namespace ShowCase
@@ -10,37 +12,29 @@ namespace ShowCase
 		static void Main(string[] args)
 		{
 			Console.CursorVisible = false;
-			Window window = new Window(0, 0, 30, 12);
-			window.AddComponent(new Label
-			{
-				X = 0,
-				Y = 0,
-				Text = "Window Title",
-				Width = window.Width,
-				HorizontalAlignment = HorizontalAlignment.Center,
-			});
-			window.AddComponent(new PasswordBox
-			{
-				X = 5,
-				Y = 5,
-				PlaceHolder = "Password",
-				Width = 14
-			});
-			window.AddComponent(new Button
-			{
-				X = 5, 
-				Y = 7,
-				Text = "Click",
-				Width = 20,
-				HorizontalAlignment = HorizontalAlignment.Center,
-				Id = "btn",
-				Click = () =>
-				{
-					Console.Title = ((PasswordBox)window.components[1]).Text;
-				}
-			});
+			Window window = new Window(0, 0, 40, 20);
 
-			((Button)window.GetComponentById("btn")).Text = "Click Me";
+
+			window.AddComponent(new GridPanel(5, 2)
+			{
+				X = 10,
+				Y = 2,
+				Width = 20,
+				Height = 10,
+				BackGroundColor = ConsoleColor.Gray,
+				Id = "grid"
+			});
+			((GridPanel)window.GetComponentById("grid")).AddChild(new Label { Text = "1", }, 0, 0);
+			((GridPanel)window.GetComponentById("grid")).AddChild(new Button { Text = "Delete", Width = 10, HorizontalAlignment = HorizontalAlignment.Center }, 0, 1);
+
+			((GridPanel)window.GetComponentById("grid")).AddChild(new Label { Text = "2", }, 1, 0);
+			((GridPanel)window.GetComponentById("grid")).AddChild(new Button { Text = "Delete", Width = 10, HorizontalAlignment = HorizontalAlignment.Center }, 1, 1);
+
+			((GridPanel)window.GetComponentById("grid")).AddChild(new Label { Text = "3" }, 2, 0);
+			((GridPanel)window.GetComponentById("grid")).AddChild(new Button { Text = "Delete", Width = 10, HorizontalAlignment = HorizontalAlignment.Center }, 2, 1);
+
+			((GridPanel)window.GetComponentById("grid")).AddChild(new Label { Text = "4" }, 3, 0);
+			((GridPanel)window.GetComponentById("grid")).AddChild(new Button { Text = "Delete", Width = 10, HorizontalAlignment = HorizontalAlignment.Center }, 3, 1);
 
 			window.Render();
 			window.HandleInput();

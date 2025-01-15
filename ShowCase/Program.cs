@@ -2,6 +2,8 @@
 using CLUI.Components;
 using CLUI.Enums;
 using CLUI.Layouts;
+using System.Net.WebSockets;
+using System.Runtime.CompilerServices;
 using System.Security.Principal;
 
 
@@ -12,29 +14,113 @@ namespace ShowCase
 		static void Main(string[] args)
 		{
 			Console.CursorVisible = false;
-			Window window = new Window(0, 0, 40, 20);
+			Window window = new Window(0, 0,40, 20);
 
-
-			window.AddComponent(new GridPanel(5, 2)
+			int count = 1;
+			window.AddComponent(new Label
 			{
-				X = 10,
+				X = 0,
 				Y = 2,
-				Width = 20,
-				Height = 10,
-				BackGroundColor = ConsoleColor.Gray,
-				Id = "grid"
+				Width = window.Width,
+				HorizontalAlignment = HorizontalAlignment.Center,
+				Text = count.ToString(),
+				BackGroundColor = ConsoleColor.White,
+				Id = "count"
 			});
-			((GridPanel)window.GetComponentById("grid")).AddChild(new Label { Text = "1", }, 0, 0);
-			((GridPanel)window.GetComponentById("grid")).AddChild(new Button { Text = "Delete", Width = 10, HorizontalAlignment = HorizontalAlignment.Center }, 0, 1);
 
-			((GridPanel)window.GetComponentById("grid")).AddChild(new Label { Text = "2", }, 1, 0);
-			((GridPanel)window.GetComponentById("grid")).AddChild(new Button { Text = "Delete", Width = 10, HorizontalAlignment = HorizontalAlignment.Center }, 1, 1);
+			window.AddComponent(new StackPanel
+			{
+				X = 0,
+				Y = 4,
+				Width = window.Width,
+				BackGroundColor = ConsoleColor.White,
+				StackingAlignment = StackingAlignment.Horizontal,
+				Spacing = 2,
+				Children = {
+					new Button{
+						Text="Add (+)",
+						Width = (window.Width/2)-1,
+						HorizontalAlignment= HorizontalAlignment.Center,
+						BackGroundColor= ConsoleColor.DarkGreen,
+						FoucsColors=(ConsoleColor.Green,
+						ConsoleColor.White),
+					Click= () => {
+						count++;
+						((Label)window.GetComponentById("count")).Text = "Amount: " + count.ToString();
+						((Label)window.GetComponentById("count")).Update();
+					}
+					},
+					new Button{
+						Text="Subtract (-)",
+								Width = (window.Width/2)-1,
+						HorizontalAlignment= HorizontalAlignment.Center,
+						BackGroundColor= ConsoleColor.DarkRed,
+						FoucsColors=(ConsoleColor.Red,
+						ConsoleColor.White),
+						Click= () => {
+						count--;
+						((Label)window.GetComponentById("count")).Text = "Amount: " + count.ToString();
+						((Label)window.GetComponentById("count")).Update();
+					}
+					},
+			}
+			});
 
-			((GridPanel)window.GetComponentById("grid")).AddChild(new Label { Text = "3" }, 2, 0);
-			((GridPanel)window.GetComponentById("grid")).AddChild(new Button { Text = "Delete", Width = 10, HorizontalAlignment = HorizontalAlignment.Center }, 2, 1);
+			window.AddComponent(new Button
+			{
+				X = 5,
+				Y = 6,
+				Width = window.Width-10,
+				Text = "Reset Counter",
+				HorizontalAlignment = HorizontalAlignment.Center,
+				Click = () =>
+				{
+					count = 0;
+					((Label)window.GetComponentById("count")).Text = "Amount: " + count.ToString();
+					((Label)window.GetComponentById("count")).Update();
+				}
+			});
 
-			((GridPanel)window.GetComponentById("grid")).AddChild(new Label { Text = "4" }, 3, 0);
-			((GridPanel)window.GetComponentById("grid")).AddChild(new Button { Text = "Delete", Width = 10, HorizontalAlignment = HorizontalAlignment.Center }, 3, 1);
+
+			window.AddComponent(new Dropdown
+			{
+				X = 12,
+				Y = 8,
+				Options = {
+					"+10",
+					"+100",
+					"+1000",
+					"+1000000",
+					"+1000000000",
+				},
+				OnSelected = (int index) =>
+				{
+					int plusCount = 0;
+					switch (index)
+					{
+						case 0:
+							plusCount = 10;
+							break;
+						case 1:
+							plusCount = 100;
+							break;
+						case 2:
+							plusCount = 1000;
+							break;
+						case 3:
+							plusCount = 1000000;
+							break;
+						case 4:
+							plusCount = 1000000000;
+							break;
+					}
+
+					count += plusCount;
+					((Label)window.GetComponentById("count")).Text = "Amount: " + count.ToString();
+					((Label)window.GetComponentById("count")).Update();
+				}
+
+			});
 
 			window.Render();
 			window.HandleInput();

@@ -67,7 +67,7 @@ namespace CLUI.Components
 			}
 			if (HorizontalAlignment == HorizontalAlignment.Center)
 			{
-				int totalWhitespace = Width - Text.Length;
+				int totalWhitespace = Width+1 - Text.Length;
 				if (totalWhitespace < 0) totalWhitespace = 0; // no negative offset
 				int leftPadding = totalWhitespace / 2;
 				int rightPadding = totalWhitespace - leftPadding;

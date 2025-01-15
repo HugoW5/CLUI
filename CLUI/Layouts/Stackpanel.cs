@@ -20,7 +20,7 @@ namespace CLUI.Layouts
 		public ConsoleColor ForeGroundColor { get; set; }
 		public List<IComponent> Children { get; private set; } = new List<IComponent>();
 		public StackingAlignment StackingAlignment { get; set; } = StackingAlignment.Vertical; // Default to vertical stacking
-		public int Spacing { get; set; } = 1; // Space between children
+		public int Spacing { get; set; } = 0; // Space between children
 
 		public void AddChild(IComponent child)
 		{
@@ -85,7 +85,7 @@ namespace CLUI.Layouts
 			for (int row = 0; row < Height; row++)
 			{
 				Console.SetCursorPosition(offsetX + X, offsetY + Y + row);
-				Console.Write(new string(' ', Width));
+				Console.Write(new string(' ', Width+1));
 			}
 			Console.ResetColor();
 		}

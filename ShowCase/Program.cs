@@ -42,7 +42,7 @@ namespace ShowCase
 						Width = (window.Width/2)-1,
 						HorizontalAlignment= HorizontalAlignment.Center,
 						BackGroundColor= ConsoleColor.DarkGreen,
-						FoucsColors=(ConsoleColor.Green,
+						FocusColors=(ConsoleColor.Green,
 						ConsoleColor.White),
 					Click= () => {
 						count++;
@@ -55,7 +55,7 @@ namespace ShowCase
 								Width = (window.Width/2)-1,
 						HorizontalAlignment= HorizontalAlignment.Center,
 						BackGroundColor= ConsoleColor.DarkRed,
-						FoucsColors=(ConsoleColor.Red,
+						FocusColors=(ConsoleColor.Red,
 						ConsoleColor.White),
 						Click= () => {
 						count--;

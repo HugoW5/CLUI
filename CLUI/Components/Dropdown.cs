@@ -16,7 +16,7 @@ namespace CLUI.Components
 		/// (Background, Foreground)
 		/// Colors when focused
 		/// </summary>
-		public (ConsoleColor Background, ConsoleColor Foreground) FoucsColors { get; set; } = (ConsoleColor.Blue, ConsoleColor.White);
+		public (ConsoleColor Background, ConsoleColor Foreground) FocusColors { get; set; } = (ConsoleColor.Blue, ConsoleColor.White);
 		public List<string> Options { get; set; } = new List<string>();
 		public int SelectedIndex { get; set; } = -1; // -1 = no selection
 		/// <summary>
@@ -71,8 +71,8 @@ namespace CLUI.Components
 
 			if (IsFocused)
 			{
-				Console.BackgroundColor = FoucsColors.Background;
-				Console.ForegroundColor = FoucsColors.Foreground;
+				Console.BackgroundColor = FocusColors.Background;
+				Console.ForegroundColor = FocusColors.Foreground;
 			}
 			else
 			{

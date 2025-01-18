@@ -20,7 +20,7 @@ namespace CLUI.Components
         /// (Background, Foreground)
         /// Colors when focused
         /// </summary>
-        public (ConsoleColor Background, ConsoleColor Foreground) FoucsColors { get; set; } = (ConsoleColor.Blue, ConsoleColor.White);
+        public (ConsoleColor Background, ConsoleColor Foreground) FocusColors { get; set; } = (ConsoleColor.Blue, ConsoleColor.White);
 
 		private int _offsetX = 0;
 		private int _offsetY = 0;
@@ -46,8 +46,8 @@ namespace CLUI.Components
 			}
 			if (IsFocused)
 			{
-				Console.BackgroundColor = FoucsColors.Background;
-				Console.ForegroundColor = FoucsColors.Foreground;
+				Console.BackgroundColor = FocusColors.Background;
+				Console.ForegroundColor = FocusColors.Foreground;
 			}
 			else
 			{

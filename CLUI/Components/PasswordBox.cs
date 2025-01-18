@@ -10,8 +10,8 @@
 			}
 			if (IsFocused)
 			{
-				Console.BackgroundColor = FoucsColors.Background;
-				Console.ForegroundColor = FoucsColors.Foreground;
+				Console.BackgroundColor = FocusColors.Background;
+				Console.ForegroundColor = FocusColors.Foreground;
 			}
 			else
 			{

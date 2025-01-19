@@ -18,11 +18,4 @@ A simple frontend library for console applications</Description>
 Added an Id propery to every component.</PackageReleaseNotes>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\..\..\..\Desktop\desc.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
-
 </Project>

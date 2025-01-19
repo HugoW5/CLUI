@@ -142,11 +142,23 @@ namespace CLUI
 			{
 				if (Console.KeyAvailable)
 				{
-					ConsoleKey key = Console.ReadKey(intercept: true).Key;
+					var keyInfo = Console.ReadKey(intercept: true);
+					var key = keyInfo.Key;
+					var modifiers = keyInfo.Modifiers;
+
 					switch (key)
 					{
 						case ConsoleKey.Tab:
-							MoveFocus();
+							if (modifiers.HasFlag(ConsoleModifiers.Shift))
+							{
+								// Handle Shift+Tab
+								MoveFocus(-1);
+							}
+							else
+							{
+								// Handle Tab
+								MoveFocus(1);
+							}
 							break;
 						case ConsoleKey.Escape:
 							runFunction = false;
@@ -156,9 +168,9 @@ namespace CLUI
 							break;
 					}
 				}
-
 			}
 		}
+
 		private void HandleComponentClick(IComponent component)
 		{
 			if (component is IInputHandler clickableInputHandler)
@@ -174,24 +186,38 @@ namespace CLUI
 			}
 
 		}
-		private void MoveFocus()
+		private void MoveFocus(int nextMove)
 		{
-			//Find the next focusable component
-			if (focusedIndex != -1 && components[focusedIndex] is IFocusable currentFocusable)
+			// Blur the current focusable component if applicable
+			if (focusedIndex >= 0 && components[focusedIndex] is IFocusable currentFocusable)
 			{
 				currentFocusable.OnBlur();
 			}
 
 			do
 			{
-				focusedIndex = (focusedIndex + 1) % components.Count;
-			} while (!(components[focusedIndex] is IFocusable));
+				if (nextMove < 0 && focusedIndex == 0)
+				{
+					focusedIndex = components.Count - 1;
+				}
+				else if (nextMove > 0 && focusedIndex == components.Count - 1)
+				{
+					focusedIndex = 0;
+				}
+				else
+				{
+					focusedIndex = (focusedIndex + nextMove + components.Count) % components.Count;
+				}
+			} while (components[focusedIndex] is not IFocusable);
 
+			// Focus the new focusable component
 			if (components[focusedIndex] is IFocusable newFocusable)
 			{
 				newFocusable.OnFocus();
 			}
 		}
+
+		
 		public IComponent GetComponentById(string id)
 		{
 			IComponent? tmpComponent = components.FirstOrDefault(c => c.Id == id);

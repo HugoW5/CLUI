@@ -163,7 +163,7 @@ namespace CLUI
 						case ConsoleKey.Escape:
 							runFunction = false;
 							return;
-						case ConsoleKey.Enter:
+						case ConsoleKey.Enter or ConsoleKey.Spacebar:
 							HandleComponentClick(components[focusedIndex]);
 							break;
 					}

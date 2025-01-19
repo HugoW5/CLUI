@@ -131,7 +131,7 @@ namespace CLUI.Components
 							Close();
 							runFunction = false;
 							break;
-						case ConsoleKey.Enter:
+						case ConsoleKey.Enter or ConsoleKey.Spacebar:
 							if (SelectedIndex >= 0 && SelectedIndex < Options.Count)
 							{
 								OnOptionSelected(Options[SelectedIndex]);

@@ -9,7 +9,7 @@
     <Description>Command Line User Interface.
 A simple frontend library for console applications</Description>
     <PackageProjectUrl>https://github.com/HugoW5/CLUI</PackageProjectUrl>
-    <PackageReadmeFile>desc.md</PackageReadmeFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/HugoW5/CLUI</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>UI;CLI;CLUI;TUI;GUI;</PackageTags>
@@ -17,5 +17,7 @@ A simple frontend library for console applications</Description>
     <PackageReleaseNotes>Introduced GetComponentById method in Window.cs to retrieve components by Id.
 Added an Id propery to every component.</PackageReleaseNotes>
   </PropertyGroup>
-
+	<ItemGroup>
+		<None Include="README.md" pack="true" PackagePath="." />
+	</ItemGroup>
 </Project>

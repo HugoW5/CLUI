@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 namespace CLUI.Layouts
 {
+    /// <summary>
+    /// The GridPanel compoent Represents a grid-based layout.
+    /// It organizes child compnents into a specifed numbers of collumns and rows.
+    /// Provied methods to Add, Remove and Arrange componnts within the grid.
+    /// </summary>
     public class GridPanel : ILayout
     {
         public int X { get; set; }
@@ -16,8 +21,10 @@ namespace CLUI.Layouts
 
         public int Rows { get; }
         public int Columns { get; }
-
-        public int Spacing { get; set; } = 0; // Space between cells
+		/// <summary>
+		/// Space between cells
+		/// </summary>
+		public int Spacing { get; set; } = 0; 
 
         public List<IComponent> Children { get; private set; } = new List<IComponent>();
 
@@ -49,8 +56,16 @@ namespace CLUI.Layouts
 
             throw new InvalidOperationException("No available space in the grid.");
         }
-
-        public void AddChild(IComponent child, int row, int column)
+		/// <summary>
+        /// Adds a child to the grid in the specifed row and column.
+        /// Add arranges the componets.
+		/// </summary>
+		/// <param name="child">The component</param>
+		/// <param name="row">The row number</param>
+		/// <param name="column">The column number</param>
+		/// <exception cref="ArgumentOutOfRangeException">Row or column is out of grid bounds</exception>
+		/// <exception cref="InvalidOperationException">Cell is already occupied.</exception>
+		public void AddChild(IComponent child, int row, int column)
         {
             if (row >= Rows || column >= Columns)
                 throw new ArgumentOutOfRangeException("Row or column is out of grid bounds.");
@@ -62,7 +77,12 @@ namespace CLUI.Layouts
             Children.Add(child);
             Arrange();
         }
-
+        /// <summary>
+        /// Removes the specifed child from the grid.
+        /// And Arranges the components when it's deleted.
+        /// </summary>
+        /// <param name="child"></param>
+        /// <exception cref="InvalidOperationException">The specifed child is not in the grid</exception>
         public void RemoveChild(IComponent child)
         {
             // Find and remove child from grid
@@ -83,6 +103,9 @@ namespace CLUI.Layouts
             throw new InvalidOperationException("Child not found in grid.");
         }
 
+        /// <summary>
+        /// Arranges the child-components inside the grid.
+        /// </summary>
         public void Arrange()
         {
             int cellWidth = Width / Columns;

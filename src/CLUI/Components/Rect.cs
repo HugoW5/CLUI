@@ -2,6 +2,10 @@
 
 namespace CLUI.Components
 {
+    /// <summary>
+    /// The Rect component is only used as styling
+    ///  Supports attibues such as BorderColor and BorderThickness.
+    /// </summary>
     public class Rect : IComponent
     {
         public int X { get; set; }

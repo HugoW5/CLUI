@@ -10,6 +10,12 @@ using IComponent = CLUI.Interfaces.IComponent;
 
 namespace CLUI
 {
+	/// <summary>
+	/// Represents a window in the console that can contain Components.
+	/// Provides method for adding, removing and rendering components, and userinput.
+	/// Supports windows postiononing, background color and window borders.
+	/// 
+	/// </summary>
 	public class Window
 	{
 		public int X { get; set; }
@@ -48,14 +54,25 @@ namespace CLUI
 		public List<IComponent> components = new List<Interfaces.IComponent>();
 		private int focusedIndex = 0;
 		private bool runFunction = true;
+		/// <summary>
+		/// Add a component to the window
+		/// </summary>
+		/// <param name="component">The component to add</param>
 		public void AddComponent(IComponent component)
 		{
 			components.Add(component);
 		}
+		/// <summary>
+		/// Removes a component from the window.
+		/// </summary>
+		/// <param name="component">The component to remove</param>
 		public void RemoveComponent(IComponent component)
 		{
 			components.Remove(component);
 		}
+		/// <summary>
+		/// Renders the window and all of the components inside the window.
+		/// </summary>
 		public void Render()
 		{
 			//Render Window
@@ -135,6 +152,9 @@ namespace CLUI
 		{
 			runFunction = false;
 		}
+		/// <summary>
+		/// Handels user-input to the application/window.
+		/// </summary>
 		public void HandleInput()
 		{
 			runFunction = true;
@@ -170,7 +190,10 @@ namespace CLUI
 				}
 			}
 		}
-
+		/// <summary>
+		/// Handles component clicks
+		/// </summary>
+		/// <param name="component">The clicked component</param>
 		private void HandleComponentClick(IComponent component)
 		{
 			if (component is IInputHandler clickableInputHandler)
@@ -186,6 +209,11 @@ namespace CLUI
 			}
 
 		}
+		/// <summary>
+		/// Moves focus to another compoent in the components list.
+		/// Moves the focus either back or forward.
+		/// </summary>
+		/// <param name="nextMove">Eiter -1 or +1, moves back or forward</param>
 		private void MoveFocus(int nextMove)
 		{
 			// Blur the current focusable component if applicable
@@ -217,7 +245,12 @@ namespace CLUI
 			}
 		}
 
-		
+		/// <summary>
+		/// Retrive an component using the componets Id.
+		/// </summary>
+		/// <param name="id">The specifed id</param>
+		/// <returns>Return the compoonent with the speficied if</returns>
+		/// <exception cref="InvalidOperationException">No component with the specified id exits</exception>
 		public IComponent GetComponentById(string id)
 		{
 			IComponent? tmpComponent = components.FirstOrDefault(c => c.Id == id);

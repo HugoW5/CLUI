@@ -3,6 +3,10 @@ using CLUI.Interfaces;
 
 namespace CLUI.Components
 {
+	/// <summary>
+	/// Represents a button component.
+	/// Supporting focus, click handling and rendering
+	/// </summary>
 	public class Button : IComponent, IFocusable, IClickable
     {
         public string Text { get; set; } = "";
@@ -24,12 +28,17 @@ namespace CLUI.Components
 
 		private int _offsetX = 0;
 		private int _offsetY = 0;
-
+		/// <summary>
+		/// Handles the focus event by setting the button as focues and triggering a re-render
+		/// </summary>
 		public void OnFocus()
 		{
 			IsFocused = true;
 			Render(_offsetX, _offsetY);
 		}
+		/// <summary>
+		/// Handles the focus event by setting the button as not focused and triggering a re-render
+		/// </summary>
 		public void OnBlur()
 		{
 			IsFocused = false;
@@ -79,7 +88,7 @@ namespace CLUI.Components
 			}
 		}
 		/// <summary>
-		/// RE-render
+		/// Updates the button by re-rendering it at it's last known offset postion
 		/// </summary>
 		public void Update()
 		{

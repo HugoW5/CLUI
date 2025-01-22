@@ -9,6 +9,8 @@ https://www.nuget.org/packages/CLUI
 5. PasswordBox
 6. Checkbox
 7. Dropdown
+8. GridPanel
+9. StackPanel
 
 ## Label
 ```

@@ -14,6 +14,11 @@ namespace CLUI.Interfaces
         public int Height { get; set; }
         public string Id { get; set; }
 		public ConsoleColor BackGroundColor { get; set; }
+        /// <summary>
+        /// Renders the component at the specified offset postion.
+        /// </summary>
+        /// <param name="offsetX">The horizontal offset</param>
+        /// <param name="offsetY">The vertical offset</param>
         public void Render(int offsetX, int offsetY);
     }
 }

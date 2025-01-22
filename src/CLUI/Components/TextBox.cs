@@ -2,6 +2,11 @@
 
 namespace CLUI.Components
 {
+	/// <summary>
+	/// Textbox component is used for taking user input.
+	/// Supports attibutes such as Placeholder.
+	/// - - Does Not support arrow-key navigation in the text.
+	/// </summary>
 	public class TextBox : IComponent, IFocusable, IInputHandler
 	{
 		public bool IsFocused { get; set; } = false;
@@ -9,7 +14,13 @@ namespace CLUI.Components
 		public int Y { get; set; }
 		public int Width { get; set; }
 		public int Height { get; set; } = 1;
+		/// <summary>
+		/// The text displayed on the textbox input when it is empty.
+		/// </summary>
 		public string PlaceHolder { get; set; } = "";
+		/// <summary>
+		/// The user-inputted text gets stored in this variable
+		/// </summary>
 		public string Text { get; set; } = "";
 		public string Id { get; set; } = string.Empty;
 		public ConsoleColor BackGroundColor { get; set; } = ConsoleColor.DarkGray;
@@ -22,6 +33,10 @@ namespace CLUI.Components
 
 		private int _offsetX = 0;
 		private int _offsetY = 0;
+		/// <summary>
+		/// Handles user-input. Seeks for ESC, Tab and Enter,
+		/// The Textbox component exits input-mode if one of those keys are clicked.
+		/// </summary>
 		public void HandleInput()
 		{
 			bool runFunction = true;
@@ -49,13 +64,19 @@ namespace CLUI.Components
 							runFunction = false;
 							break;
 						default:
-							getInput(key);
+							GetInput(key);
 							break;
 					}
 				}
 			}
 		}
-		private void getInput(ConsoleKeyInfo key)
+		/// <summary>
+		/// Gets the user inputted key presses and converts them into
+		/// chars inorder to add them to the Text attribute.
+		/// Supports backspace by removing the last char in the text-string
+		/// </summary>
+		/// <param name="key">The Key (ConsoleKeyInfo)</param>
+		private void GetInput(ConsoleKeyInfo key)
 		{
 			if (key.Key == ConsoleKey.Backspace)
 			{

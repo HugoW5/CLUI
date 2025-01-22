@@ -9,6 +9,11 @@ using CLUI.Components;
 
 namespace CLUI.Layouts
 {
+	/// <summary>
+	/// Represent a stack-based layout panel.
+	/// The StackPanel arranges child components either horizontally or vertically.
+	/// Supports Adding and Remoing children.
+	/// </summary>
 	public class StackPanel : ILayout
 	{
 		public int X { get; set; }
@@ -19,14 +24,27 @@ namespace CLUI.Layouts
 		public ConsoleColor BackGroundColor { get; set; }
 		public ConsoleColor ForeGroundColor { get; set; }
 		public List<IComponent> Children { get; private set; } = new List<IComponent>();
+		/// <summary>
+		/// The StackingAlignment Enum sets how the Arrange() method arrages the child components.
+		/// It Supports Horizontal and Vertical Stacking.
+		/// </summary>
 		public StackingAlignment StackingAlignment { get; set; } = StackingAlignment.Vertical; // Default to vertical stacking
 		public int Spacing { get; set; } = 0; // Space between children
 
+		/// <summary>
+		/// Add a child to the StackPanel.
+		/// And arrange the StackPanel.
+		/// </summary>
+		/// <param name="child">The child to add to the StackPanel</param>
 		public void AddChild(IComponent child)
 		{
 			Children.Add(child);
 			Arrange();
 		}
+		/// <summary>
+		/// Add a list of child components.
+		/// </summary>
+		/// <param name="children">The list of components</param>
 		public void AddChild(List<IComponent> children)
 		{
 			foreach (IComponent child in children)
@@ -35,13 +53,18 @@ namespace CLUI.Layouts
 			}
 			Arrange();
 		}
-
+		/// <summary>
+		/// Removes a child from the StackPanel
+		/// </summary>
+		/// <param name="child">The child to remove</param>
 		public void RemoveChild(IComponent child)
 		{
 			Children.Remove(child);
 			Arrange();
 		}
-
+		/// <summary>
+		/// Arranges the child-components inside the StackPanel.
+		/// </summary>
 		public void Arrange()
 		{
 			int offsetX = X;

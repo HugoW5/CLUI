@@ -3,6 +3,10 @@ using IComponent = CLUI.Interfaces.IComponent;
 
 namespace CLUI.Components
 {
+	/// <summary>
+	/// Represents a dropdown component that allows users to select an option from a list.
+	/// The dropdown is navigated by the use of arrow-keys
+	/// </summary>
 	public class Dropdown : IComponent, IFocusable, IInputHandler
 	{
 		public int X { get; set; }
@@ -31,6 +35,9 @@ namespace CLUI.Components
 		private string? SelectedValue = null;
 		private int _offsetX = 0;
 		private int _offsetY = 0;
+		/// <summary>
+		/// Re-renders the dropdown component with the options listed.
+		/// </summary>
 		public void Open()
 		{
 			if (!IsOpen)
@@ -41,6 +48,9 @@ namespace CLUI.Components
 			//Re render with open or closed togglew
 			Render(_offsetX, _offsetY);
 		}
+		/// <summary>
+		/// Re-redners the dropdown compoent with the option-list closed
+		/// </summary>
 		public void Close()
 		{
 			if (IsOpen)
@@ -109,7 +119,9 @@ namespace CLUI.Components
 
 			Console.ResetColor();
 		}
-		//Handle input, navigation + selection
+		/// <summary>
+		/// Handles user input, navigation and selecting options
+		/// </summary>
 		public void HandleInput()
 		{
 			Open();
@@ -157,6 +169,10 @@ namespace CLUI.Components
 				}
 			}
 		}
+		/// <summary>
+		/// Invokes the OnSelected deleate with the selected index as an int parameter.
+		/// </summary>
+		/// <param name="opt"></param>
 		private void OnOptionSelected(string opt)
 		{
 			SelectedValue = opt;
@@ -175,6 +191,12 @@ namespace CLUI.Components
 			//Close();
 			Render(_offsetX, _offsetY);
 		}
+		/// <summary>
+		/// This method runs when the dropdown is closed.
+		/// It overwrites the area occupied by the dropdown-options with white.
+		/// </summary>
+		/// <param name="offsetX">Horizontal rendering offset</param>
+		/// <param name="offsetY">Vertical rendering offset</param>
 		private void ClearOptions(int offsetX, int offsetY)
 		{
 			Console.BackgroundColor = ConsoleColor.White;

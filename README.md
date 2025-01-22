@@ -1,3 +1,5 @@
+# CLUI ![NuGet Version](https://img.shields.io/nuget/v/CLUI) ![GitHub branch check runs](https://img.shields.io/github/check-runs/HugoW5/CLUI/master)
+
 ## Nuget
 https://www.nuget.org/packages/CLUI
 

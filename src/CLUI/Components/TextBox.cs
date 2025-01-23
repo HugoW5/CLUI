@@ -7,7 +7,7 @@ namespace CLUI.Components
 	/// Supports attibutes such as Placeholder.
 	/// - - Does Not support arrow-key navigation in the text.
 	/// </summary>
-	public class TextBox : IComponent, IFocusable, IInputHandler
+	public class TextBox : IComponent, IFocusable, IInputHandler, ITextDisplay
 	{
 		public bool IsFocused { get; set; } = false;
 		public int X { get; set; }

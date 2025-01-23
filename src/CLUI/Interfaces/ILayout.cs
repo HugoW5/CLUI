@@ -11,6 +11,7 @@ namespace CLUI.Interfaces
 		public List<IComponent> Children { get; }
 		public void AddChild(IComponent child);
 		public void RemoveChild(IComponent child);
+		public bool ContainsInteractiveComponents();
 		public void Arrange();
 	}
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CLUI.Interfaces
 {
-    public interface IInputHandler : ITextDisplay
+    public interface IInputHandler
 	{
         public void HandleInput();
     }

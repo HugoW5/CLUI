@@ -23,4 +23,10 @@ namespace CLUI.Enums
 		Vertical,
 		Horizontal
 	}
+	public enum Overflow
+	{
+		Show,
+		Hide,
+		Scroll
+	}
 }

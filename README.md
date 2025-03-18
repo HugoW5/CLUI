@@ -2,6 +2,8 @@
 
 ## Nuget
 https://www.nuget.org/packages/CLUI
+## Example app
+![clui](https://github.com/user-attachments/assets/b6d332a5-23ab-447b-9bd1-ec73282600a2)
 
 ## Components
 1. Button

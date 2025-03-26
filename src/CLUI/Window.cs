@@ -180,6 +180,12 @@ namespace CLUI
 								MoveFocus(1);
 							}
 							break;
+						case ConsoleKey.DownArrow or ConsoleKey.RightArrow:
+							MoveFocus(1);
+							break;
+						case ConsoleKey.UpArrow or ConsoleKey.LeftArrow:
+							MoveFocus(-1);
+							break;
 						case ConsoleKey.Escape:
 							runFunction = false;
 							return;

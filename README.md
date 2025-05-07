@@ -17,7 +17,7 @@ https://www.nuget.org/packages/CLUI
 9. StackPanel
 
 ## Label
-```
+```cs
 Window window = new Window(0, 0, 30, 12);
 window.AddComponent(new Label
 {
@@ -33,7 +33,7 @@ window.HandleInput();
 
 ## Label & Dropdown
 
-```
+```cs
 Window window = new Window(0, 0, 30, 12);
 window.AddComponent(new Label
 {
@@ -67,7 +67,7 @@ window.HandleInput();
 
 ## Label & Checkbox
 	
-```
+```cs
 Window window = new Window(0, 0, 30, 12);
 window.AddComponent(new Label
 {

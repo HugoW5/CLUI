@@ -52,7 +52,7 @@ namespace CLUI
 		}
 
 		public List<IComponent> components = new List<Interfaces.IComponent>();
-		private int focusedIndex = 0;
+		private int focusedIndex = -1;
 		private bool runFunction = true;
 		/// <summary>
 		/// Add a component to the window
@@ -108,36 +108,36 @@ namespace CLUI
 			}
 			Console.ResetColor();
 
+			/*
+						//Render componets
 
-			//Render componets
+						// Add the children of the Layout component
+						List<IComponent> tmpComponents = new List<IComponent>(components);
+						List<IComponent> newComponents = new List<IComponent>();
 
-			// Add the children of the Layout component
-			List<IComponent> tmpComponents = new List<IComponent>(components);
-			List<IComponent> newComponents = new List<IComponent>();
+						foreach (var component in components)
+						{
+							if (component is ILayout tmpLayout)
+							{
+								tmpComponents.Add(tmpLayout);
+								foreach (var child in tmpLayout.Children)
+								{
+									tmpComponents.Add(child);
+								}
+							}
+						}
 
-			foreach (var component in components)
-			{
-				if (component is ILayout tmpLayout)
-				{
-					tmpComponents.Add(tmpLayout);
-					foreach (var child in tmpLayout.Children)
-					{
-						tmpComponents.Add(child);
-					}
-				}
-			}
+						for (int i = 0; i < tmpComponents.Count; i++)
+						{
+							if (!components.Contains(tmpComponents[i]) && !newComponents.Contains(tmpComponents[i]))
+							{
+								newComponents.Add(tmpComponents[i]);
+							}
+						}
 
-			for (int i = 0; i < tmpComponents.Count; i++)
-			{
-				if (!components.Contains(tmpComponents[i]) && !newComponents.Contains(tmpComponents[i]))
-				{
-					newComponents.Add(tmpComponents[i]);
-				}
-			}
-
-			// Add new components to the original list after iteration
-			components.AddRange(newComponents);
-
+						// Add new components to the original list after iteration
+						components.AddRange(newComponents);
+			*/
 
 			foreach (IComponent component in components)
 			{
@@ -229,7 +229,7 @@ namespace CLUI
 			}
 
 			do
-			{
+			{   
 				if (nextMove < 0 && focusedIndex == 0)
 				{
 					focusedIndex = components.Count - 1;
@@ -242,13 +242,14 @@ namespace CLUI
 				{
 					focusedIndex = (focusedIndex + nextMove + components.Count) % components.Count;
 				}
-			} while (components[focusedIndex] is not IFocusable);
+			} while (components[focusedIndex] is not IFocusable || ComponentIsUnFocusable()); // = focusable component that should not get focused
 
 			// Focus the new focusable component
 			if (components[focusedIndex] is IFocusable newFocusable)
 			{
 				newFocusable.OnFocus();
 			}
+			Console.Title = components[focusedIndex].Id;
 		}
 
 		/// <summary>
@@ -269,6 +270,17 @@ namespace CLUI
 				throw new InvalidOperationException($"Component with ID '{id}' was not found.");
 			}
 		}
-
+		private bool ComponentIsUnFocusable()
+		{
+			//Do not focus on the layout if it does not contain any interactive components
+			if (components[focusedIndex] is ILayout tmpLayout)
+			{
+				if (!tmpLayout.ContainsInteractiveComponents())
+				{
+					return true;
+				}
+			}
+			return false;
+		}
 	}
 }

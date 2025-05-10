@@ -2,7 +2,7 @@
 {
 	/// <summary>
 	/// PasswordBox is derived from TextBox.
-	/// Acts as a TextBox but maskes the inputed charcaters.
+	/// Acts as a TextBox but masks the inputed charcaters.
 	/// </summary>
 	public class PasswordBox : TextBox
 	{
@@ -27,6 +27,7 @@
 				Console.BackgroundColor = BackGroundColor;
 				Console.ForegroundColor = ForeGroundColor;
 			}
+
 			for (int i = 0; i < Width; i++)
 			{
 				Console.SetCursorPosition(i + X + offsetX, +Y + offsetY);
